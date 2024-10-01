@@ -32,6 +32,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name='celizin'
+        options={{
+          title: 'Celizin',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'airplane' : 'airplane-outline'} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
