@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Platform } from 'react-native';
+import { ScrollView, StyleSheet, Platform, View } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -9,7 +9,7 @@ export default function CelizinPage() {
   return (
     <ScrollView style={styles.scrollView}>
       <LinearGradient
-        colors={['#4c669f', '#3b5998', '#192f6a']}
+        colors={['#2c3e50', '#3498db']}
         style={styles.headerGradient}
       >
         <ThemedText style={styles.title}>Celiz Ramos Matías Nicolás</ThemedText>
@@ -84,7 +84,7 @@ interface SectionTitleProps {
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ icon, title }) => (
   <ThemedView style={styles.sectionTitleContainer}>
-    <MaterialCommunityIcons size={24} color="#4c669f" />
+    <MaterialCommunityIcons name={icon as keyof typeof MaterialCommunityIcons.glyphMap} size={24} color="#3498db" />
     <ThemedText style={styles.sectionTitle}>{title}</ThemedText>
   </ThemedView>
 );
@@ -96,7 +96,7 @@ interface ContactItemProps {
 
 const ContactItem: React.FC<ContactItemProps> = ({ icon, text }) => (
   <ThemedView style={styles.contactItem}>
-    <MaterialCommunityIcons size={20} color="#4c669f" />
+    <MaterialCommunityIcons name={icon as keyof typeof MaterialCommunityIcons.glyphMap} size={20} color="#3498db" />
     <ThemedText style={styles.contactText}>{text}</ThemedText>
   </ThemedView>
 );
@@ -114,10 +114,10 @@ const JobItem: React.FC<JobItemProps> = ({ title, company, date, duties }) => (
     <ThemedText style={styles.jobCompany}>{company}</ThemedText>
     <ThemedText style={styles.jobDate}>{date}</ThemedText>
     {duties.map((duty, index) => (
-      <ThemedView key={index} style={styles.dutyItem}>
+      <View key={index} style={styles.dutyItem}>
         <ThemedText style={styles.dutyBullet}>•</ThemedText>
         <ThemedText style={styles.dutyText}>{duty}</ThemedText>
-      </ThemedView>
+      </View>
     ))}
   </ThemedView>
 );
@@ -137,33 +137,33 @@ const SkillItem: React.FC<SkillItemProps> = ({ title, skills }) => (
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#f5f5f5',
   },
   headerGradient: {
-    padding: 20,
+    padding: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 200,
+    height: 220,
   },
   container: {
     padding: 20,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
+    marginBottom: 10,
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 20,
     color: 'white',
-    marginTop: 10,
+    marginTop: 5,
   },
   section: {
-    marginBottom: 30,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 15,
+    marginBottom: 25,
+    borderRadius: 15,
+    padding: 20,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -172,81 +172,100 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
       },
       android: {
-        elevation: 3,
+        elevation: 4,
       },
     }),
   },
   sectionTitleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ecf0f1',
+    paddingBottom: 10,
   },
   sectionTitle: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
     marginLeft: 10,
-    color: '#4c669f',
+    color: '#2c3e50',
   },
   contactItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 15,
   },
   contactText: {
-    marginLeft: 10,
+    marginLeft: 15,
     fontSize: 16,
+    color: '#34495e',
   },
   jobItem: {
-    marginBottom: 20,
+    marginBottom: 25,
+    borderLeftWidth: 3,
+    borderLeftColor: '#3498db',
+    paddingLeft: 15,
   },
   jobTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#4c669f',
+    color: '#2c3e50',
+    marginBottom: 5,
   },
   jobCompany: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '500',
+    color: '#34495e',
+    marginBottom: 3,
   },
   jobDate: {
     fontSize: 14,
     fontStyle: 'italic',
-    color: '#666',
-    marginBottom: 5,
+    color: '#7f8c8d',
+    marginBottom: 10,
   },
   dutyItem: {
     flexDirection: 'row',
     marginTop: 5,
+    alignItems: 'flex-start',
   },
   dutyBullet: {
-    marginRight: 5,
+    marginRight: 10,
+    color: '#3498db',
+    fontSize: 16,
   },
   dutyText: {
     flex: 1,
+    fontSize: 16,
+    color: '#34495e',
   },
   skillItem: {
-    marginBottom: 10,
+    marginBottom: 15,
   },
   skillTitle: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
+    color: '#2c3e50',
+    marginBottom: 5,
   },
   skillText: {
     fontSize: 16,
+    color: '#34495e',
   },
   educationTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#4c669f',
+    color: '#2c3e50',
+    marginBottom: 5,
   },
   educationSchool: {
-    fontSize: 16,
-    marginTop: 5,
+    fontSize: 18,
+    color: '#34495e',
+    marginBottom: 3,
   },
   educationDate: {
     fontSize: 14,
     fontStyle: 'italic',
-    color: '#666',
-    marginTop: 5,
+    color: '#7f8c8d',
   },
 });
